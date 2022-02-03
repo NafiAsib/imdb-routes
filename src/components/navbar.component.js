@@ -1,7 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
+    const currentPath = useLocation().pathname;
+
+    const getClassName = (path) => {
+        if (path === currentPath) return 'btn btn-warning';
+        else return 'btn btn-outline-warning';
+    };
+
     return (
         <>
             <nav className="navbar navbar-light bg-light">
@@ -21,26 +28,29 @@ const Navbar = () => {
                     </Link>
                     <Link
                         to="/movies"
-                        className="btn btn-warning"
+                        className={getClassName('/movies')}
                         style={{ marginRight: '10px' }}
                     >
                         All movies
                     </Link>
-                    <Link to="/add-movie" className="btn btn-outline-warning">
+                    <Link
+                        to="/add-movie"
+                        className={getClassName('/add-movie')}
+                    >
                         Add movie
                     </Link>
                 </span>
                 <span>
                     <Link
                         to="/login"
-                        className="btn btn-outline-warning"
+                        className={getClassName('/login')}
                         style={{ marginRight: '10px' }}
                     >
                         Login
                     </Link>
                     <Link
                         to="/signup"
-                        className="btn btn-outline-warning"
+                        className={getClassName('/signup')}
                         style={{ marginRight: '40px' }}
                     >
                         Signup
